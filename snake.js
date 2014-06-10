@@ -1,15 +1,17 @@
-// this function waits until the document is ready before
-// it loads. 
-// binding portions (code that modifies the DOM) should be placed
-// in the wait-for-ready function. 
 (function(root) {
+	var SG = root.SG = (root.SG || {});
 	
-	var Game = root.Game = (root.Game || {});
-	
-	var Snake = Game.Snake = function() {
+	var Snake = SG.Snake = function(board) {
 		this.direction = "n";
-		this.segments = [];
-	}
+		this.board = board;
+		
+		var center = [(this.board.dim/2), (this.board.dim/2)]
+		
+		this.segments = [(center[0], center[1])];
+		// return array with single position values
+	};
 	
 })(this);
 
+// we are just moving around position values and class-status for 
+// an array matrix. 

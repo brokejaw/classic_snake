@@ -1,16 +1,29 @@
 <html>
-	<head>
-		<title>Snake</title>
-		
-		<script type="text/javascript"
-			src= "vendors/jquery-1.9.1.js"></script>
-		<script type="text/javascript"
-			src= "vendors/underscore.js"></script>
-		<script type="text/javascript"
-			src= "snake.js"></script>
-	</head>
-	<body>
-		
-		
-	</body>
+  <head>
+    <title>Great snakes!</title>
+
+    <script type="text/javascript"
+             src="vendors/jquery-1.9.1.js"></script>
+    <script type="text/javascript"
+             src="vendors/underscore.js"></script>
+    <script type="text/javascript"
+             src="snake.js"></script>
+    <script type="text/javascript"
+             src="view.js"></script>
+    <script type="text/javascript"
+             src="board.js"></script>
+    <script type="text/javascript"
+             src="coord.js"></script>
+	  <script type="text/javascript"
+	           src="apple.js"></script>
+    <link rel="stylesheet" href="./snake.css"></link>
+  </head>
+
+  <body>
+    <div id="grid"></div>
+
+    <script>
+      $(function () { new SG.View($("#grid")).start(); });
+    </script>
+  </body>
 </html>
