@@ -6,7 +6,11 @@
 	};
 	
 	View.prototype.start = function() {
-		// create a new board object
+		this.board = new SG.Board(20);
+		
+		// set up event listener
+		
+		// set up interval
 	};
 	
 	
