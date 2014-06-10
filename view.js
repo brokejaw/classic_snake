@@ -11,3 +11,12 @@
 	
 	
 })(this);
+/*
+  <body>
+    <div id="grid"></div>
+
+    <script>
+      $(function () { new SG.View($("#grid")).start(); });
+    </script>
+  </body>
+*/
