@@ -6,4 +6,10 @@
 	
 	var Game = root.Game = (root.Game || {});
 	
+	var Snake = Game.Snake = function() {
+		this.direction = "n";
+		this.segments = [];
+	}
+	
 })(this);
+
