@@ -86,7 +86,7 @@
 			return (coord.x !== seg.x) || (coord.y !== seg.y)
 		});
 		
-		return inside && empty;
+		return insideBoard && empty;
 	};
 	/////////////////
 })(this);
