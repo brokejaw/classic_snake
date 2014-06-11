@@ -19,7 +19,10 @@
 	// creates two new random variables, and sets them as the 
 	// position value for apple. keep in mind to stay in bounds
 	Apple.prototype.replace = function(){
+		var x = Math.floor(Math.random() * this.board.dim);
+		var y = Math.floor(Math.random() * this.board.dim);
 		
+		this.position = new Coord(x, y);
 	};
 	/////////////////
 	/////////////////
@@ -48,14 +51,19 @@
 		var newHead = head.plus(Snake.DIFFS[this.dir]);
 		
 		if (this.eatsApple(newHead)) {
-			snake.segments.push(newHead);
-		} else if (this.board.validMove(newHead)) {
-			snake.segments.push(newHead);
+			snake.segments.push(head.plus(Snake.DIFFS[this.dir]));
+			this.board.apple.replace();
+		} else if (this.board.validMove(head.plus(Snake.DIFFS[this.dir]))) {
+			snake.segments.push(head.plus(Snake.DIFFS[this.dir]));
 			snake.segments.shift();
 		} else {
 			snake.segments = [];
 		}
-		debugger
+	};
+	
+	// fix this so you can't turn into yourself
+	Snake.prototype.turn = function(newDir) {
+		this.dir = newDir
 	};
 	
 	Snake.prototype.eatsApple = function(headPos) {
@@ -67,6 +75,43 @@
 	var Board = SG.Board = function (dim) {
 		this.dim = dim;
 		this.apple = new Apple(this);
+		this.apple.replace();
+		
+		this.snake = new Snake(this);
+	};
+	
+	Board.prototype.validMove = function(coord) {
+		var insideBoard = (coord.x <= 19) && (coord.x >= 0) && (coord.y <= 19) && 											(coord.y >= 0);
+		var empty = _(this.snake.segments).every(function(seg) {
+			return (coord.x !== seg.x) || (coord.y !== seg.y)
+		});
+		
+		return inside && empty;
 	};
 	/////////////////
 })(this);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
