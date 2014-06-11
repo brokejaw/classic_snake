@@ -21,6 +21,7 @@
 		
 		var view = this;
 		var board = this.board;
+		var score = this.board.score;
 		
 		function blankMatrix () {
 			
@@ -51,6 +52,7 @@
 			});
 			view.$el.append($rowEl);
 		});
+		view.$el.append("Your score: " + score);
 	};
 	
 	View.prototype.step = function () {
@@ -87,12 +89,6 @@
 	
 	
 })(this);
-/*
-  <body>
-    <div id="grid"></div>
-
-    <script>
-      $(function () { new SG.View($("#grid")).start(); });
-    </script>
-  </body>
-*/
+// add-ons: make kid-friendly version that disables wall
+// 					create easy-medium-hard. higher speeds == more points
+// 					set up click-event to start. 

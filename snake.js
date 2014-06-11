@@ -53,6 +53,7 @@
 		if (this.eatsApple(newHead)) {
 			snake.segments.push(head.plus(Snake.DIFFS[this.dir]));
 			this.board.apple.replace();
+			this.board.score += 1;
 		} else if (this.board.validMove(head.plus(Snake.DIFFS[this.dir]))) {
 			snake.segments.push(head.plus(Snake.DIFFS[this.dir]));
 			snake.segments.shift();
@@ -76,6 +77,7 @@
 		this.dim = dim;
 		this.apple = new Apple(this);
 		this.apple.replace();
+		this.score = 0;
 		
 		this.snake = new Snake(this);
 	};
