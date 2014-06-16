@@ -31,7 +31,7 @@
 				});
 			});
 		};
-		// [[object]]
+		
 		var boardMatrix = blankMatrix();
 		_(board.snake.segments).each(function(seg) {
 			

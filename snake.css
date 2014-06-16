@@ -1,10 +1,14 @@
+#content {
+	background-color: lavender;
+}
+
 .cell {
-  float: left;
+	float: left;
   height: 20px;
   width: 20px;
   background: #eee;
-
   border: solid gray 1px;
+	border-radius: 2px;
 }
 
 .snake {
