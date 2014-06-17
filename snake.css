@@ -1,24 +1,55 @@
-#content {
-	background-color: lavender;
+body {
+	font-family: 'Shadows Into Light';
+	background-color: #336;
+	font-size: 25px;
+	color: red;
 }
 
-.cell {
+h1 {
+	text-align: center;
+	margin: 5px;
+}
+
+p {
+	padding-top: 5px;
+	font-size: 30px;
+	text-align: center;
+}
+
+div.cell {
 	float: left;
-  height: 20px;
-  width: 20px;
-  background: #eee;
-  border: solid gray 1px;
-	border-radius: 2px;
+  height: 35px;
+  width: 35px;
+	border-radius: 7px;
+	background-color: #aaa;
+	box-shadow: 1px 1px 3px #333 inset;
 }
 
-.snake {
-  background-color: green
+div.body {
+	margin: auto;
 }
 
-.apple {
-  background-color: red;
+div.snake {
+	background-color: #272;
+	box-shadow: inset 1px 2px 3px #050; 
 }
 
-.row {
+
+
+div.apple {
+	z-index: 100;
+	background-color: #922;
+	box-shadow: 1px 1px 3px #400 inset;
+}
+
+#content {
+	padding-top: 20px;
+	margin: auto;
+  width: 480px;
+  text-align: center;
+  text-shadow: 2px 2px #003;
+}
+
+div.row {
   clear: both;
 }

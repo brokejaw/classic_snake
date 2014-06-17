@@ -1,6 +1,6 @@
 (function(root) {
 	var SG = root.SG = (root.SG || {});
-	////////////////
+	
 	var Coord = SG.Coord = function(x, y) {
 		this.x = x;
 		this.y = y;
@@ -9,23 +9,19 @@
 	Coord.prototype.plus = function(temp) {
 		return new Coord(this.x + temp.x, this.y + temp.y);
 	};
-	/////////////////
-	/////////////////
+	
 	var Apple = SG.Apple = function(board) {
 		this.board = board;
 		this.position = null;
 	};
 	
-	// creates two new random variables, and sets them as the 
-	// position value for apple. keep in mind to stay in bounds
 	Apple.prototype.replace = function(){
 		var x = Math.floor(Math.random() * this.board.dim);
 		var y = Math.floor(Math.random() * this.board.dim);
 		
 		this.position = new Coord(x, y);
 	};
-	/////////////////
-	/////////////////
+
 	var Snake = SG.Snake = function(board) {
 		this.dir = "n";
 		this.board = board;
@@ -34,7 +30,6 @@
 		var center = new Coord(midPoint, midPoint);
 		
 		this.segments = [center];
-		// return array with single position values
 	};
 	
 	Snake.DIFFS = {
@@ -46,14 +41,16 @@
 	
 	Snake.prototype.move = function() {
 		var snake = this;
-		var head = _.last(snake.segments); 
-					// equivalent to _(snake.segments).last()
+		var head = _.last(snake.segments);
 		var newHead = head.plus(Snake.DIFFS[this.dir]);
 		
 		if (this.eatsApple(newHead)) {
 			snake.segments.push(head.plus(Snake.DIFFS[this.dir]));
 			this.board.apple.replace();
 			this.board.score += 1;
+			if (this.board.highscore <= this.board.score) {
+				this.board.highscore += 1;
+			}
 		} else if (this.board.validMove(head.plus(Snake.DIFFS[this.dir]))) {
 			snake.segments.push(head.plus(Snake.DIFFS[this.dir]));
 			snake.segments.shift();
@@ -62,7 +59,6 @@
 		}
 	};
 	
-	// fix this so you can't turn into yourself
 	Snake.prototype.turn = function(newDir) {
 		this.dir = newDir
 	};
@@ -71,26 +67,25 @@
 		var applePos = this.board.apple.position;
 		return (headPos.x == applePos.x) && (headPos.y == applePos.y)
 	};
-	/////////////////
-	/////////////////
+
 	var Board = SG.Board = function (dim) {
 		this.dim = dim;
 		this.apple = new Apple(this);
 		this.apple.replace();
 		this.score = 0;
+		this.highscore = 0;
 		
 		this.snake = new Snake(this);
 	};
 	
 	Board.prototype.validMove = function(coord) {
-		var insideBoard = (coord.x <= 19) && (coord.x >= 0) && (coord.y <= 19) && 											(coord.y >= 0);
+		var insideBoard = (coord.x <= this.dim) && (coord.x >= 0) && (coord.y <= this.dim) && (coord.y >= 0);
 		var empty = _(this.snake.segments).every(function(seg) {
 			return (coord.x !== seg.x) || (coord.y !== seg.y)
 		});
 		
 		return insideBoard && empty;
 	};
-	/////////////////
 })(this);
 
 
