@@ -1,11 +1,10 @@
 (function(root) {
 	var SG = root.SG = (root.SG || {});
 	
-	var View = SG.View = function($el) {
+	var View = SG.View = function($el, board) {
 		this.$el = $el;
-		this.board = null;
-		this.intervalID = null; // this is our interval. 
-		
+		this.board = new SG.Board(12)
+		this.intervalID = null;
 	};
 	
 	View.KEYS = {
@@ -16,13 +15,10 @@
 	};
 	
 	View.prototype.render = function () {
-		
 		var view = this;
 		var board = this.board;
-		var score = this.board.score;
 		
 		function blankMatrix () {
-			
 			return _.times(view.board.dim, function() {
 				return _.times(view.board.dim, function() {
 					return $('<div class="cell"></div>'); 
@@ -63,6 +59,7 @@
 			view.render();
 		} else {
 			window.clearInterval(this.intervalID);
+			view.start();
 		}
 	};
 	
@@ -74,8 +71,7 @@
 	};
 	
 	View.prototype.start = function() {
-		
-		this.board = new SG.Board(12);
+		this.board.boardSetup();
 		
 		$(window).keydown(this.handleKeyEvent.bind(this));
 		

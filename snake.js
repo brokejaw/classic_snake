@@ -15,11 +15,12 @@
 		this.position = null;
 	};
 	
-	Apple.prototype.replace = function(){
+	Apple.prototype.replace = function(snake){
 		var x = Math.floor(Math.random() * this.board.dim);
 		var y = Math.floor(Math.random() * this.board.dim);
 		
 		this.position = new Coord(x, y);
+		
 	};
 
 	var Snake = SG.Snake = function(board) {
@@ -46,10 +47,10 @@
 		
 		if (this.eatsApple(newHead)) {
 			snake.segments.push(head.plus(Snake.DIFFS[this.dir]));
-			this.board.apple.replace();
-			this.board.score += 1;
-			if (this.board.highscore <= this.board.score) {
-				this.board.highscore += 1;
+			this.board.apple.replace(this);
+			this.board.score += 7;
+			if (this.board.highscore < this.board.score) {
+				this.board.highscore += 7;
 			}
 		} else if (this.board.validMove(head.plus(Snake.DIFFS[this.dir]))) {
 			snake.segments.push(head.plus(Snake.DIFFS[this.dir]));
@@ -70,12 +71,14 @@
 
 	var Board = SG.Board = function (dim) {
 		this.dim = dim;
+		this.highscore = 0;
+	};
+	
+	Board.prototype.boardSetup = function () {
+		this.snake = new Snake(this);
+		this.score = 0;
 		this.apple = new Apple(this);
 		this.apple.replace();
-		this.score = 0;
-		this.highscore = 0;
-		
-		this.snake = new Snake(this);
 	};
 	
 	Board.prototype.validMove = function(coord) {
