@@ -16,6 +16,17 @@ p {
 	text-align: center;
 }
 
+#score {
+	margin-bottom: 0px;
+}
+
+#highscore {
+	padding-bottom: 0px;
+	padding-top: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
 div.cell {
 	float: left;
   height: 35px;
