@@ -1,5 +1,5 @@
 use Rack::Static,
-  :urls => ["/js", "/css", "/snake"],
+  :urls => ["/js", "/css"],
   :root => "public"
 
 run lambda { |env|
@@ -9,12 +9,6 @@ run lambda { |env|
       'Content-Type'  => 'text/html',
       'Cache-Control' => 'public, max-age=86400'
     },
-    
-    200,
-    {
-      'Content-Type'  => 'text/html',
-      'Cache-Control' => 'public, max-age=86400'
-    },
-    File.open('public/snake/snake.html', File::RDONLY)
+    File.open('public/index.html', File::RDONLY)
   ]
 }
