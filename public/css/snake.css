@@ -1,8 +1,8 @@
 body {
 	font-family: 'Shadows Into Light';
-	background-color: #336;
+	background-color: tomato;
 	font-size: 25px;
-	color: red;
+	color: aquamarine;
 }
 
 h1 {
@@ -41,15 +41,13 @@ div.body {
 }
 
 div.snake {
-	background-color: #272;
+	background-color: green;
 	box-shadow: inset 1px 2px 3px #050; 
 }
 
-
-
 div.apple {
 	z-index: 100;
-	background-color: #922;
+	background-color: #bf1a00;
 	box-shadow: 1px 1px 3px #400 inset;
 }
 
